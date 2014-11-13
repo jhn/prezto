@@ -11,3 +11,24 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+alias l="ls -lah"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# OPAM configuration
+. /Users/jmena/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# List all JDKs: java_ls
+# Use a JDK: java_use 1.6
+
+alias java_ls='/usr/libexec/java_home -V 2>&1 | grep -E "\d.\d.\d[,_]" | cut -d , -f 1 | colrm 1 4 | grep -v Home'
+
+function java_use() {
+    export JAVA_HOME=$(/usr/libexec/java_home -v $1)
+    export PATH=$JAVA_HOME/bin:$PATH
+    java -version
+}
+
+alias miad="cd ~/code/school/miad"
+alias plt="cd ~/code/school/plt"
+alias os="cd ~/code/school/ds"
